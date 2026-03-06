@@ -1,0 +1,617 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-bg-primary: #323437;
+  --color-bg-secondary: #2c2e31;
+  --color-bg-tertiary: #363739;
+  --color-text-primary: #d1d0c5;
+  --color-text-secondary: #646669;
+  --color-text-tertiary: #454647;
+  --color-accent: #e2b714;
+  --color-accent-hover: #c9a312;
+  --color-error: #ca4754;
+  --color-correct: #d1d0c5;
+  --color-extra: #7e2a33;
+  --color-caret: #e2b714;
+  --color-card: #2c2e31;
+  --color-card-hover: #363739;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --radius: 0.5rem;
+  
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bg-tertiary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+/* Input and Button Base Styles */
+input, button {
+  font-family: inherit;
+}
+
+/* Link Styles */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Caret Blink Animation */
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Slide Up Animation */
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(30px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: 0.8;
+  }
+}
+
+/* Subtle Pulse Animation */
+@keyframes pulseSubtle {
+  0%, 100% { 
+    opacity: 0.6; 
+  }
+  50% { 
+    opacity: 1; 
+  }
+}
+
+/* Smooth Pulse for Focus Banner */
+@keyframes smoothPulse {
+  0%, 100% { 
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+/* Glow Pulse for Correct Characters */
+@keyframes glowPulse {
+  0%, 100% { 
+    text-shadow: 0 0 2px rgba(209, 208, 197, 0.2);
+  }
+  50% { 
+    text-shadow: 0 0 6px rgba(209, 208, 197, 0.4);
+  }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+/* Tooltip Fade In */
+@keyframes tooltipFadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(5px) translateX(-50%); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) translateX(-50%); 
+  }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+/* ============================================
+   UTILITY ANIMATION CLASSES
+   ============================================ */
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulseSubtle 2s ease-in-out infinite;
+  }
+
+  .animate-smooth-pulse {
+    animation: smoothPulse 2s ease-in-out infinite;
+  }
+
+  .animate-glow-pulse {
+    animation: glowPulse 1.5s ease-in-out infinite;
+  }
+
+  .caret-blink {
+    animation: caretBlink 1s step-end infinite;
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
+  }
+  
+  /* Smooth Caret Movement */
+  .caret-smooth {
+    transition: top 0.05s cubic-bezier(0.4, 0, 0.2, 1),
+                left 0.05s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* ============================================
+   CARET/CURSOR STYLES
+   ============================================ */
+
+.caret {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-caret);
+  border-radius: 1px;
+  pointer-events: none;
+  transition: transform 0.08s ease-out;
+}
+
+.caret-smooth {
+  transition: transform 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ============================================
+   CHARACTER STATE STYLES
+   ============================================ */
+
+.char-correct {
+  color: var(--color-correct);
+  text-shadow: 0 0 4px rgba(209, 208, 197, 0.15);
+}
+
+.char-incorrect {
+  color: var(--color-error);
+}
+
+.char-extra {
+  color: var(--color-extra);
+}
+
+.char-pending {
+  color: var(--color-text-tertiary);
+}
+
+/* ============================================
+   FOCUS STATE STYLES
+   ============================================ */
+
+.focus-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(50, 52, 55, 0.7);
+  backdrop-filter: blur(2px);
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+
+.focus-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 24px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: 8px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  white-space: nowrap;
+  animation: smoothPulse 2s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 20;
+}
+
+/* ============================================
+   TOOLTIP STYLES
+   ============================================ */
+
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 12px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: 6px;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 50;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--color-bg-tertiary);
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  animation: tooltipFadeIn 0.2s ease forwards;
+}
+
+/* ============================================
+   BUTTON HOVER EFFECTS
+   ============================================ */
+
+.btn-hover-lift {
+  transition: all 0.2s ease-out;
+}
+
+.btn-hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+.btn-hover-lift:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ============================================
+   CARD HOVER EFFECTS
+   ============================================ */
+
+.card-hover {
+  transition: all 0.2s ease-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+/* ============================================
+   INPUT FOCUS STYLES
+   ============================================ */
+
+.input-focus-accent {
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.input-focus-accent:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+  box-shadow: 0 2px 8px rgba(226, 183, 20, 0.1);
+}
+
+/* ============================================
+   TYPING AREA STYLES
+   ============================================ */
+
+.typing-container {
+  position: relative;
+  outline: none;
+  cursor: text;
+}
+
+.typing-container:focus {
+  outline: none;
+}
+
+.typing-words {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  line-height: 1.625;
+  letter-spacing: 0.025em;
+}
+
+.word {
+  display: inline-block;
+  position: relative;
+}
+
+.word-completed {
+  opacity: 0.5;
+}
+
+.char {
+  position: relative;
+  display: inline-block;
+  transition: color 0.05s ease;
+}
+
+/* ============================================
+   RESULTS PANEL STYLES
+   ============================================ */
+
+.stat-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s ease-out;
+}
+
+.stat-card:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.stat-value-accent {
+  color: var(--color-accent);
+}
+
+/* ============================================
+   PROFILE CARD STYLES
+   ============================================ */
+
+.profile-best-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-bg-tertiary);
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s ease-out;
+}
+
+.profile-best-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   TABLE STYLES
+   ============================================ */
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-bg-tertiary);
+}
+
+.data-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-bg-tertiary);
+  transition: background 0.15s ease;
+}
+
+.data-table tr:hover td {
+  background: var(--color-bg-tertiary);
+}
+
+/* ============================================
+   AUTH FORM STYLES
+   ============================================ */
+
+@layer components {
+  .auth-input {
+    @apply w-full px-4 py-3 bg-[#2c2e31] text-[#d1d0c5] rounded-lg border border-[#363739] text-sm transition-all duration-200;
+  }
+  
+  .auth-input:focus {
+    @apply outline-none border-[#e2b714] shadow-[0_0_0_3px_rgba(226,183,20,0.1)];
+  }
+  
+  .auth-input::placeholder {
+    @apply text-[#454647];
+  }
+  
+  .auth-button {
+    @apply w-full py-3 bg-[#e2b714] text-[#323437] rounded-lg font-semibold text-sm cursor-pointer transition-all duration-150;
+  }
+  
+  .auth-button:hover {
+    @apply bg-[#c9a312];
+  }
+  
+  .auth-button:active {
+    @apply scale-[0.98];
+  }
+  
+  .auth-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .typing-words {
+    font-size: 1.25rem;
+  }
+  
+  .stat-card {
+    padding: 12px;
+  }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
