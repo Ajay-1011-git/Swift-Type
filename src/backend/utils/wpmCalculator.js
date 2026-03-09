@@ -1,0 +1,54 @@
+export function calculateWPM(correctChars, timeSeconds) {
+    if (timeSeconds <= 0) return 0;
+    const minutes = timeSeconds / 60;
+    return Math.round((correctChars / 5) / minutes);
+}
+
+export function calculateRawWPM(totalCharsTyped, timeSeconds) {
+    if (timeSeconds <= 0) return 0;
+    const minutes = timeSeconds / 60;
+    return Math.round((totalCharsTyped / 5) / minutes);
+}
+
+export function calculateAccuracy(correctChars, totalCharsTyped) {
+    if (totalCharsTyped <= 0) return 0;
+    return Math.round((correctChars / totalCharsTyped) * 10000) / 100;
+}
+
+export function calculateConsistency(wpmHistory) {
+    if (wpmHistory.length < 2) return 100;
+    const mean = wpmHistory.reduce((a, b) => a + b, 0) / wpmHistory.length;
+    if (mean === 0) return 0;
+    const variance =
+        wpmHistory.reduce((sum, val) => sum + Math.pow(val - mean, 2), 0) / wpmHistory.length;
+    const stdDev = Math.sqrt(variance);
+    const cv = (stdDev / mean) * 100;
+    return Math.round(Math.max(0, 100 - cv) * 100) / 100;
+}
+
+export function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    if (mins === 0) return `${secs}s`;
+    return `${mins}m ${secs}s`;
+}
+
+export function formatNumber(num) {
+    return num.toLocaleString('en-US', { maximumFractionDigits: 1 });
+}
+
+export function formatDate(date) {
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+export function formatDuration(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = Math.floor(seconds % 60);
+
+    if (hours > 0) {
+        return `${hours}h ${mins}m`;
+    }
+    if (mins === 0) return `${secs}s`;
+    return `${mins}m ${secs}s`;
+}
