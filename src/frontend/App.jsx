@@ -7,6 +7,8 @@ import Login from "./pages/Login/Login";
 import Signup from "./pages/Signup/Signup";
 import Profile from "./pages/Profile/Profile";
 import About from "./pages/About/About";
+import Levels from "./pages/Levels/Levels";
+import LevelTest from "./pages/Levels/LevelTest";
 function ProtectedRoute({ children }) {
   const { user, loading } = useUserStore();
   if (loading) {
@@ -38,6 +40,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/about" element={<About />} />
+          <Route path="/levels" element={<Levels />} />
+          <Route path="/levels/:id" element={<LevelTest />} />
           <Route
     path="/profile"
     element={<ProtectedRoute>

@@ -40,6 +40,16 @@ function Navbar() {
                 <p>About</p>
               </TooltipContent>
             </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link to="/levels" className="p-2 rounded-lg text-[#646669] hover:text-[#d1d0c5] transition-colors outline-none" title="Levels">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent className="bg-[#2c2e31] text-[#d1d0c5] border-[#363739]">
+                <p>Levels</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
 

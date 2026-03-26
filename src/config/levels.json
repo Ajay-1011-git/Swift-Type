@@ -1,0 +1,38 @@
+{
+  "levels": [
+    {
+      "id": 1,
+      "name": "Foundation",
+      "targetWPM": 25,
+      "wordCount": 30,
+      "accuracyThreshold": 85,
+      "constraints": {
+        "allowBackspace": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "Consistency",
+      "targetWPM": 40,
+      "wordCount": 50,
+      "accuracyThreshold": 90,
+      "constraints": {
+        "allowBackspace": true
+      }
+    },
+    {
+      "id": 3,
+      "name": "Speed Control",
+      "targetWPM": 60,
+      "wordCount": 80,
+      "accuracyThreshold": 92,
+      "constraints": {
+        "allowBackspace": true
+      }
+    }
+  ],
+  "customUnlock": {
+    "minWPM": 60,
+    "minAccuracy": 90
+  }
+}

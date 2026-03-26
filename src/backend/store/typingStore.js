@@ -93,6 +93,10 @@ export const useTypingStore = create((set, get) => ({
 
     charStates: [],
 
+    allowBackspace: true,
+
+    setAllowBackspace: (val) => set({ allowBackspace: val }),
+
     setMode: (mode) => {
         set({ mode });
         get().generateWords();
@@ -256,6 +260,7 @@ export const useTypingStore = create((set, get) => ({
         if (!currentWord) return;
 
         if (key === 'Backspace') {
+            if (!state.allowBackspace) return;
             if (state.currentInput.length > 0) {
                 const newInput = state.currentInput.slice(0, -1);
                 const newCharIndex = newInput.length;
@@ -442,6 +447,7 @@ export const useTypingStore = create((set, get) => ({
             timeElapsed: 0,
             timeRemaining: state.timeLimit,
             timerInterval: null,
+            allowBackspace: true,
             correctChars: 0,
             incorrectChars: 0,
             extraChars: 0,

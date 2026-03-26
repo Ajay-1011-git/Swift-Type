@@ -589,6 +589,22 @@ a {
 }
 
 /* ============================================
+   LEVEL CARD STYLES
+   ============================================ */
+
+.level-card {
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.level-card:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+.level-card:not(:disabled):active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* ============================================
    RESPONSIVE UTILITIES
    ============================================ */
 

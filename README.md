@@ -88,6 +88,27 @@ service cloud.firestore {
 }
 ```
 
+## 🧠 Architecture & How It Works
+
+SwiftType is a modern Single Page Application (SPA). Because it is an SPA, the page does not reload when navigating; React Router seamlessly swaps components instantly.
+
+### 1. The Core Engine: Global State (`typingStore.js`)
+Instead of passing data between dozens of small React components, the entire logic of the typing test lives in a global state store built with **Zustand**. 
+- **The State:** It tracks an array of expected words, the user's current input string, the elapsed time, and live statistics (errors, correct keystrokes).
+- **The Loop:** It relies on an interval (`setInterval`) that ticks every 1 second. Every second, it recalculates the current WPM and accuracy, pushing those data points into a `wpmHistory` array.
+
+### 2. How Text is Generated (`textGenerator.js`)
+When a test starts, the application calls a text generation utility.
+- It contains a dictionary of the **most common English words**.
+- A loop runs for the required word count. On each iteration, it uses `Math.random()` to pick a random word.
+- **Modifiers:** If options like "numbers" or "punctuation" are enabled, the generator uses a randomization threshold (e.g., an 8% chance to insert a random number) before returning the final array to the store.
+
+### 3. Page Breakdown
+* **Home Page (`Home.jsx`):** Renders the active typing test. It listens to keystrokes on an invisible text input, compares them against the expected characters, and applies dynamic CSS coloring (red/white) based on accuracy.
+* **Results Panel:** Once a test finishes, this panel mounts. It immediately sends a request to save the run to **Firebase Firestore** and uses the **Recharts** library to plot the `wpmHistory` data points onto an area graph.
+* **Profile Page (`Profile.jsx`):** Acts as a user dashboard. On mount, it retrieves the user's UID and queries Firebase for all past tests. It calculates "Personal Bests" for each duration category and populates the data tables.
+* **Leaderboard Page (`Leaderboard.jsx`):** Compares the user against global high scores by querying the Firestore `users` collection specifically for top speeds.
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you have an idea for a new feature or have found a bug, feel free to open an issue or submit a pull request.
